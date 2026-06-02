@@ -243,15 +243,20 @@
       white-space: nowrap;
     }
 
+    @keyframes btn-glow {
+      0%, 100% { box-shadow: 0 2px 12px rgba(124, 58, 237, 0.3); }
+      50%       { box-shadow: 0 2px 20px rgba(124, 58, 237, 0.55); }
+    }
     .btn-primary {
       background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
       color: var(--white);
-      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.25);
+      animation: btn-glow 2.5s ease-in-out infinite;
     }
     .btn-primary:hover {
       background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
-      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 4px 22px rgba(124, 58, 237, 0.5);
       transform: translateY(-1px);
+      animation: none;
     }
 
     .btn-outline {
