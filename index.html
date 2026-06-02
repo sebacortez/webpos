@@ -1006,24 +1006,24 @@
         </div>
 
         <div>
-          <form onsubmit="handleSubmit(event)">
+          <form action="https://formspree.io/f/mykvvkbl" method="POST" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <label>
                 Nombre
-                <input type="text" placeholder="Tu nombre" required />
+                <input type="text" name="nombre" placeholder="Tu nombre" required />
               </label>
               <label>
                 Negocio
-                <input type="text" placeholder="Nombre del negocio" required />
+                <input type="text" name="negocio" placeholder="Nombre del negocio" required />
               </label>
             </div>
             <label>
               Correo electrónico
-              <input type="email" placeholder="tu@correo.com" required />
+              <input type="email" name="email" placeholder="tu@correo.com" required />
             </label>
             <label>
               Tipo de negocio
-              <select>
+              <select name="tipo">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option>Restaurante / Café</option>
                 <option>Tienda de ropa</option>
@@ -1035,7 +1035,7 @@
             </label>
             <label>
               ¿Qué necesitas resolver?
-              <textarea placeholder="Cuéntanos brevemente cómo es tu operación hoy..."></textarea>
+              <textarea name="mensaje" placeholder="Cuéntanos brevemente cómo es tu operación hoy..."></textarea>
             </label>
             <button type="submit" class="btn btn-primary" style="width:100%;">Solicitar demo gratuita →</button>
           </form>
@@ -1075,12 +1075,29 @@
       mobileNav.setAttribute('aria-hidden', String(!isOpen));
     });
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = '¡Enviado! Te contactaremos pronto.';
-      btn.style.background = '#16a34a';
+      const form = e.target;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Enviando...';
       btn.disabled = true;
+
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        btn.textContent = '¡Enviado! Te contactaremos pronto.';
+        btn.style.background = '#16a34a';
+        form.reset();
+      } else {
+        btn.textContent = 'Error al enviar. Intenta de nuevo.';
+        btn.style.background = '#dc2626';
+        btn.disabled = false;
+      }
     }
   </script>
 
