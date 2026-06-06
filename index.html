@@ -26,6 +26,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--gray-900); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
     .nav-logo-icon img { width: 36px; height: 36px; }
@@ -127,14 +128,16 @@
     <div class="nav-logo-icon"><img src="favicon.svg" alt="WebPos" /></div>
     <span class="nav-logo-text">WebPos</span>
   </a>
-  <div class="nav-links">
-    <a href="#modulos">Funcionalidades</a>
-    <a href="#preview">Vista previa</a>
-    <a href="#como">Cómo funciona</a>
-    <a href="#precios">Precios</a>
-    <a href="#contacto">Contacto</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#modulos">Funcionalidades</a>
+      <a href="#preview">Vista previa</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Pedir demo</a>
   </div>
-  <a href="#contacto" class="nav-cta">Pedir demo</a>
 </nav>
 
 <section class="hero">
