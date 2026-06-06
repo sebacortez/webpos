@@ -276,6 +276,7 @@
         <button onclick="showTab(6)" class="preview-tab" data-tab="6">Órdenes de servicio</button>
         <button onclick="showTab(7)" class="preview-tab" data-tab="7">Órdenes de compra</button>
         <button onclick="showTab(8)" class="preview-tab" data-tab="8">Reportes</button>
+        <button onclick="showTab(9)" class="preview-tab" data-tab="9">Reportes IVA</button>
       </div>
 
       <!-- Browser frame -->
@@ -296,6 +297,7 @@
           <img id="preview-img-6" src="screenshots/ordenes-servicio.png" alt="Órdenes de servicio" style="width:100%; display:none;" />
           <img id="preview-img-7" src="screenshots/ordenes-compra.png" alt="Órdenes de compra" style="width:100%; display:none;" />
           <img id="preview-img-8" src="screenshots/reportes.png" alt="Reportes" style="width:100%; display:none;" />
+          <img id="preview-img-9" src="screenshots/reportes-2.png" alt="Reportes IVA" style="width:100%; display:none;" />
         </div>
       </div>
     </div>
@@ -452,6 +454,8 @@
     document.querySelectorAll('.preview-tab').forEach((btn, i) => {
       btn.classList.toggle('active', i === index);
     });
+    // update max index
+
   }
 
   function handleSubmit(e) {
@@ -471,6 +475,8 @@
     el.style.transition = 'opacity .5s ease, transform .5s ease';
     observer.observe(el);
   });
+  // 10 tabs total (0-9)
+  window._previewMax = 9;
 </script>
 </body>
 </html>
