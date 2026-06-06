@@ -410,7 +410,7 @@
         </div>
       </div>
       <div>
-        <form class="contact-form" action="https://formspree.io/f/mykvvkbl" method="POST">
+        <form class="contact-form" id="contact-form">
           <div class="form-row">
             <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required /></div>
             <div class="form-group"><label>Empresa / Negocio</label><input type="text" name="empresa" placeholder="Nombre del negocio" /></div>
@@ -460,13 +460,33 @@
 
   }
 
-  function handleSubmit(e) {
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = '✓ Mensaje enviado — te contactamos pronto';
-    btn.style.background = '#22c55e';
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Enviando...';
     btn.disabled = true;
-  }
+    try {
+      const res = await fetch('https://formspree.io/f/mykvvkbl', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = '✓ Mensaje enviado — te contactamos pronto';
+        btn.style.background = '#22c55e';
+        form.reset();
+      } else {
+        btn.textContent = 'Error al enviar — intenta nuevamente';
+        btn.style.background = '#ef4444';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error al enviar — intenta nuevamente';
+      btn.style.background = '#ef4444';
+      btn.disabled = false;
+    }
+  });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)'; }
