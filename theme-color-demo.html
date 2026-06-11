@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Demo theme-color</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; }
+
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    section h1 { font-size: 2.5rem; font-weight: 800; }
+    section p  { font-size: 1.1rem; opacity: 0.6; }
+
+    #hero     { background: #7c3aed; color: white; }
+    #features { background: #ffffff; color: #111; border-top: 1px solid #eee; }
+    #pricing  { background: #0f172a; color: white; }
+    #contact  { background: #16a34a; color: white; }
+  </style>
+</head>
+<body>
+
+  <section id="hero">
+    <h1>Hero</h1>
+    <p>theme-color → violeta</p>
+  </section>
+
+  <section id="features">
+    <h1>Features</h1>
+    <p>theme-color → blanco</p>
+  </section>
+
+  <section id="pricing">
+    <h1>Pricing</h1>
+    <p>theme-color → azul oscuro</p>
+  </section>
+
+  <section id="contact">
+    <h1>Contacto</h1>
+    <p>theme-color → verde</p>
+  </section>
+
+  <script>
+    const sections = [
+      { id: 'hero',     color: '#7c3aed' },
+      { id: 'features', color: '#ffffff' },
+      { id: 'pricing',  color: '#0f172a' },
+      { id: 'contact',  color: '#16a34a' },
+    ]
+
+    const themeMeta = document.querySelector('meta[name="theme-color"]')
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = sections.find(s => s.id === entry.target.id)
+          if (section) themeMeta.setAttribute('content', section.color)
+        }
+      })
+    }, { threshold: 0.5 })
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id)
+      if (el) observer.observe(el)
+    })
+  </script>
+
+</body>
+</html>

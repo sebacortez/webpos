@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPos — Instagram Stories</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #e5e7eb;
+      padding: 40px 24px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto 40px;
+    }
+
+    /* Story container — 9:16 ratio */
+    .story {
+      aspect-ratio: 9/16;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      cursor: pointer;
+    }
+
+    /* Zona segura Instagram: top ~14% (barra de progreso + avatar), bottom ~14% (responder) */
+    .story::before,
+    .story::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .story::before {
+      top: 0;
+      height: 14%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.18), transparent);
+    }
+    .story::after {
+      bottom: 0;
+      height: 14%;
+      background: linear-gradient(to top, rgba(0,0,0,0.18), transparent);
+    }
+
+    /* El contenido de cada story respeta las zonas seguras */
+    .s1, .s2, .s3, .s4, .s5, .s6, .s7, .s8, .s9, .s10 {
+      padding-top: 16%;
+      padding-bottom: 16%;
+    }
+
+    /* ─── STORY 1 ─────────────────────────────── */
+    .s1 {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s1 .logo-box {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .s1 .logo-box svg { width: 30px; height: 30px; }
+    .s1 h2 { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 12px; }
+    .s1 h2 span { color: #2563eb; }
+    .s1 p { font-size: 12px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; }
+    .s1 .tag { background: #eff6ff; color: #2563eb; font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 99px; }
+    .s1 .bottom { position: absolute; bottom: 0; left: 0; right: 0; background: #f9fafb; border-top: 1px solid #f3f4f6; padding: 12px; text-align: center; }
+    .s1 .bottom span { font-size: 11px; font-weight: 700; color: #111827; letter-spacing: 0.05em; }
+
+    /* ─── STORY 2 ─────────────────────────────── */
+    .s2 {
+      background: #f8faff;
+      display: flex;
+      flex-direction: column;
+      padding: 10%;
+    }
+    .s2 .top-tag { background: #dbeafe; color: #1d4ed8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 12px; border-radius: 99px; display: inline-block; margin-bottom: 20px; align-self: flex-start; }
+    .s2 h2 { font-size: 20px; font-weight: 800; color: #111827; line-height: 1.25; margin-bottom: 10px; }
+    .s2 p { font-size: 11px; color: #6b7280; line-height: 1.6; margin-bottom: 20px; }
+    .s2 .features { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .s2 .feat { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+    .s2 .feat .icon { width: 28px; height: 28px; background: #eff6ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+    .s2 .feat span { font-size: 11px; font-weight: 600; color: #374151; }
+    .s2 .cta { margin-top: 16px; background: #111827; color: white; font-size: 12px; font-weight: 700; padding: 12px; border-radius: 10px; text-align: center; }
+
+    /* ─── STORY 3 ─────────────────────────────── */
+    .s3 {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s3 .price-badge { background: #111827; color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 16px; border-radius: 99px; margin-bottom: 20px; }
+    .s3 .price { font-size: 48px; font-weight: 900; color: #111827; line-height: 1; }
+    .s3 .unit { font-size: 16px; font-weight: 600; color: #6b7280; margin-bottom: 4px; }
+    .s3 .clp { font-size: 13px; color: #9ca3af; margin-bottom: 24px; }
+    .s3 .divider { width: 40px; height: 2px; background: #e5e7eb; margin: 0 auto 20px; }
+    .s3 .list { text-align: left; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .s3 .list li { font-size: 11px; color: #374151; display: flex; align-items: center; gap: 8px; list-style: none; }
+    .s3 .list li::before { content: '✓'; color: #2563eb; font-weight: 800; font-size: 12px; flex-shrink: 0; }
+    .s3 .bottom-cta { position: absolute; bottom: 0; left: 0; right: 0; background: #2563eb; padding: 14px; text-align: center; }
+    .s3 .bottom-cta span { color: white; font-size: 12px; font-weight: 700; }
+
+    /* ─── STORY 4 ─────────────────────────────── */
+    .s4 {
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      padding: 10%;
+    }
+    .s4 .eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 10px; }
+    .s4 h2 { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 16px; }
+    .s4 h2 em { color: #2563eb; font-style: normal; }
+    .s4 .mockup { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin-bottom: 16px; flex: 1; }
+    .s4 .mockup .row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f3f4f6; }
+    .s4 .mockup .row:last-child { border-bottom: none; }
+    .s4 .mockup .row .label { font-size: 10px; color: #9ca3af; }
+    .s4 .mockup .row .val { font-size: 11px; font-weight: 700; color: #111827; }
+    .s4 .mockup .row .val.blue { color: #2563eb; }
+    .s4 .tag-ai { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+    .s4 .tag-ai span { font-size: 10px; color: #1d4ed8; font-weight: 600; }
+
+    /* ─── STORY 5 ─────────────────────────────── */
+    .s5 {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s5 .emoji-big { font-size: 48px; margin-bottom: 16px; }
+    .s5 h2 { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 10px; }
+    .s5 p { font-size: 12px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; }
+    .s5 .steps { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .s5 .step { display: flex; align-items: center; gap: 12px; background: #f9fafb; border-radius: 10px; padding: 10px 14px; }
+    .s5 .step .num { width: 24px; height: 24px; background: #111827; color: white; border-radius: 99px; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .s5 .step span { font-size: 11px; font-weight: 600; color: #374151; }
+
+    /* ─── STORY 6 ─────────────────────────────── */
+    .s6 {
+      background: #f8faff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10%;
+    }
+    .s6 .top { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .s6 .logo-sm { width: 32px; height: 32px; border-radius: 8px; overflow: hidden; }
+    .s6 .logo-sm svg { width: 18px; height: 18px; }
+    .s6 .brand { font-size: 13px; font-weight: 800; color: #111827; }
+    .s6 h2 { font-size: 20px; font-weight: 800; color: #111827; line-height: 1.25; margin-bottom: 8px; }
+    .s6 p { font-size: 11px; color: #6b7280; line-height: 1.6; margin-bottom: 20px; }
+    .s6 .cards { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .s6 .card { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; }
+    .s6 .card .c-title { font-size: 11px; font-weight: 700; color: #111827; margin-bottom: 2px; }
+    .s6 .card .c-sub { font-size: 10px; color: #9ca3af; }
+    .s6 .url { margin-top: 16px; text-align: center; font-size: 11px; font-weight: 700; color: #2563eb; }
+
+    /* ─── STORY 7 ─────────────────────────────── */
+    .s7 {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s7 .quote-mark { font-size: 64px; color: #e5e7eb; line-height: 0.8; margin-bottom: 16px; font-family: Georgia, serif; }
+    .s7 blockquote { font-size: 16px; font-weight: 700; color: #111827; line-height: 1.4; margin-bottom: 20px; font-style: italic; }
+    .s7 .attr { font-size: 11px; color: #9ca3af; margin-bottom: 24px; }
+    .s7 .divider { width: 40px; height: 2px; background: #e5e7eb; margin: 0 auto 20px; }
+    .s7 .bottom-brand { font-size: 13px; font-weight: 800; color: #111827; }
+    .s7 .bottom-sub { font-size: 11px; color: #9ca3af; }
+
+    /* ─── STORY 8 ─────────────────────────────── */
+    .s8 {
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      padding: 10%;
+    }
+    .s8 .eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 12px; }
+    .s8 h2 { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 20px; }
+    .s8 .rubros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; }
+    .s8 .rubro { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+    .s8 .rubro .emoji { font-size: 22px; }
+    .s8 .rubro span { font-size: 10px; font-weight: 600; color: #374151; }
+    .s8 .cta { margin-top: 16px; background: #111827; color: white; font-size: 12px; font-weight: 700; padding: 12px; border-radius: 10px; text-align: center; }
+
+    /* ─── STORY 9 ─────────────────────────────── */
+    .s9 {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s9 .icon-big { width: 64px; height: 64px; background: #f0fdf4; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 20px; }
+    .s9 h2 { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 10px; }
+    .s9 p { font-size: 12px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; }
+    .s9 .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+    .s9 .pill { background: #f3f4f6; color: #374151; font-size: 10px; font-weight: 600; padding: 5px 12px; border-radius: 99px; }
+    .s9 .cta-link { font-size: 13px; font-weight: 700; color: #2563eb; }
+
+    /* ─── STORY 10 ─────────────────────────────── */
+    .s10 {
+      background: #111827;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      text-align: center;
+    }
+    .s10 .logo-box { width: 56px; height: 56px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; }
+    .s10 .logo-box svg { width: 30px; height: 30px; }
+    .s10 h2 { font-size: 24px; font-weight: 900; color: white; line-height: 1.2; margin-bottom: 10px; }
+    .s10 h2 span { color: #60a5fa; }
+    .s10 p { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 28px; }
+    .s10 .cta-btn { background: white; color: #111827; font-size: 13px; font-weight: 800; padding: 14px 28px; border-radius: 10px; margin-bottom: 12px; }
+    .s10 .url { font-size: 12px; color: #60a5fa; font-weight: 600; }
+
+    /* Logo SVG helper */
+    .logo-svg rect { fill: white; }
+
+    /* Print / export note */
+    .note {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+    .note strong { color: #111827; }
+  </style>
+</head>
+<body>
+
+  <h1>WebPos — Instagram Stories</h1>
+  <p class="subtitle">10 historias · Formato 9:16 · Estilo claro y limpio</p>
+
+  <div class="grid">
+
+    <!-- STORY 1: Brand -->
+    <div class="story s1">
+      <div class="logo-box">
+        <img src="webpos-logo.png" style="width:100%;height:100%;border-radius:inherit;">
+      </div>
+      <h2>Tu negocio,<br><span>bajo control.</span></h2>
+      <p>Sistema de punto de venta en la nube para comercios chilenos. Sin instalar nada.</p>
+      <div class="tag">Desde 1,5 UF/mes</div>
+      <div class="bottom">
+        <span>WEBPOS.CL</span>
+      </div>
+    </div>
+
+    <!-- STORY 2: Funciones -->
+    <div class="story s2">
+      <div class="top-tag">Funciones</div>
+      <h2>Todo lo que necesitas en un solo lugar</h2>
+      <p>Sin módulos de relleno. Solo lo que tu negocio usa de verdad.</p>
+      <div class="features">
+        <div class="feat"><div class="icon">🛒</div><span>Punto de venta (POS)</span></div>
+        <div class="feat"><div class="icon">💰</div><span>Caja diaria</span></div>
+        <div class="feat"><div class="icon">📦</div><span>Inventario y stock</span></div>
+        <div class="feat"><div class="icon">👥</div><span>Clientes y fidelización</span></div>
+        <div class="feat"><div class="icon">📊</div><span>Reportes con IA</span></div>
+        <div class="feat"><div class="icon">🔧</div><span>Órdenes de servicio</span></div>
+      </div>
+      <div class="cta">Ver demo gratis →</div>
+    </div>
+
+    <!-- STORY 3: Precio -->
+    <div class="story s3">
+      <div class="price-badge">Plan Básico</div>
+      <div class="price">1,5</div>
+      <div class="unit">UF / mes</div>
+      <div class="clp">≈ $57.000 · sin IVA</div>
+      <div class="divider"></div>
+      <ul class="list">
+        <li>POS y caja diaria</li>
+        <li>Inventario y stock</li>
+        <li>Gestión de clientes</li>
+        <li>Reportes con IA incluida</li>
+        <li>Implementación incluida</li>
+        <li>Capacitación a tu equipo</li>
+      </ul>
+      <div class="bottom-cta">
+        <span>webpos.cl · Solicitar demo</span>
+      </div>
+    </div>
+
+    <!-- STORY 4: IA en reportes -->
+    <div class="story s4">
+      <div class="eyebrow">Inteligencia Artificial</div>
+      <h2>Reportes que<br><em>te hablan</em></h2>
+      <div class="mockup">
+        <div class="row"><span class="label">Ventas del mes</span><span class="val blue">$2.840.000</span></div>
+        <div class="row"><span class="label">Ticket promedio</span><span class="val">$18.400</span></div>
+        <div class="row"><span class="label">Margen bruto</span><span class="val blue">34%</span></div>
+        <div class="row"><span class="label">Producto estrella</span><span class="val">Producto A</span></div>
+      </div>
+      <div class="tag-ai">
+        <span>✨ La IA interpreta tus datos y te entrega recomendaciones concretas con un clic</span>
+      </div>
+    </div>
+
+    <!-- STORY 5: Proceso -->
+    <div class="story s5">
+      <div class="emoji-big">🚀</div>
+      <h2>De cero a operativo en días</h2>
+      <p>Sin meses de implementación ni manuales interminables.</p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><span>Diagnóstico de tu negocio</span></div>
+        <div class="step"><div class="num">2</div><span>Cargamos tus productos y usuarios</span></div>
+        <div class="step"><div class="num">3</div><span>Capacitación práctica a tu equipo</span></div>
+        <div class="step"><div class="num">4</div><span>Soporte continuo incluido</span></div>
+      </div>
+    </div>
+
+    <!-- STORY 6: Multi-sucursal -->
+    <div class="story s6">
+      <div class="top">
+        <div class="logo-sm">
+          <img src="webpos-logo.png" style="width:100%;height:100%;border-radius:inherit;">
+        </div>
+        <span class="brand">WebPos</span>
+      </div>
+      <h2>¿Tienes más de una sucursal?</h2>
+      <p>Administra todas tus tiendas desde una sola pantalla. Stock independiente, reportes consolidados.</p>
+      <div class="cards">
+        <div class="card"><div class="c-title">📍 Sucursal Centro</div><div class="c-sub">Stock: 142 productos · 3 usuarios</div></div>
+        <div class="card"><div class="c-title">📍 Sucursal Norte</div><div class="c-sub">Stock: 98 productos · 2 usuarios</div></div>
+        <div class="card"><div class="c-title">📍 Sucursal Sur</div><div class="c-sub">Stock: 115 productos · 2 usuarios</div></div>
+      </div>
+      <div class="url">webpos.cl</div>
+    </div>
+
+    <!-- STORY 7: Testimonial -->
+    <div class="story s7">
+      <div class="quote-mark">"</div>
+      <blockquote>Mi equipo lo aprendió en una mañana. Antes perdíamos horas en el cierre de caja.</blockquote>
+      <div class="attr">Dueño de ferretería · Santiago</div>
+      <div class="divider"></div>
+      <div class="bottom-brand">WebPos</div>
+      <div class="bottom-sub">Sistema POS para comercios chilenos</div>
+    </div>
+
+    <!-- STORY 8: Rubros -->
+    <div class="story s8">
+      <div class="eyebrow">Para tu rubro</div>
+      <h2>Hecho para comercios reales</h2>
+      <div class="rubros">
+        <div class="rubro"><div class="emoji">🔧</div><span>Servicio técnico</span></div>
+        <div class="rubro"><div class="emoji">💍</div><span>Joyería</span></div>
+        <div class="rubro"><div class="emoji">👕</div><span>Ropa y calzado</span></div>
+        <div class="rubro"><div class="emoji">🔩</div><span>Ferretería</span></div>
+        <div class="rubro"><div class="emoji">🍕</div><span>Alimentos</span></div>
+        <div class="rubro"><div class="emoji">📱</div><span>Tecnología</span></div>
+      </div>
+      <div class="cta">¿Es tu rubro? → webpos.cl</div>
+    </div>
+
+    <!-- STORY 9: Sin instalación -->
+    <div class="story s9">
+      <div class="icon-big">☁️</div>
+      <h2>Sin instalar nada</h2>
+      <p>WebPos funciona desde cualquier navegador — computador, tablet o celular. Solo necesitas internet.</p>
+      <div class="pills">
+        <div class="pill">💻 PC</div>
+        <div class="pill">📱 Celular</div>
+        <div class="pill">📟 Tablet</div>
+        <div class="pill">🖥️ Smart TV</div>
+      </div>
+      <div class="cta-link">Prueba en demo.webpos.cl</div>
+    </div>
+
+    <!-- STORY 10: CTA final -->
+    <div class="story s10">
+      <div class="logo-box">
+        <img src="webpos-logo.png" style="width:100%;height:100%;border-radius:inherit;">
+      </div>
+      <h2>Pide tu<br><span>demo gratis</span></h2>
+      <p>Sin compromiso. Te mostramos el sistema funcionando con tu tipo de negocio.</p>
+      <div class="cta-btn">Solicitar demo →</div>
+      <div class="url">webpos.cl</div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    Haz clic en <strong>⬇ Descargar</strong> bajo cada story para guardarla como imagen PNG.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    document.querySelectorAll('.story').forEach((story, i) => {
+      // Botón de descarga
+      const btn = document.createElement('button')
+      btn.textContent = '⬇ Descargar'
+      btn.style.cssText = `
+        position: absolute; bottom: 8px; right: 8px;
+        background: rgba(0,0,0,0.6); color: white;
+        border: none; border-radius: 8px;
+        font-size: 11px; font-weight: 700;
+        padding: 6px 10px; cursor: pointer; z-index: 10;
+        backdrop-filter: blur(4px);
+      `
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation()
+        btn.textContent = '...'
+        const canvas = await html2canvas(story, {
+          scale: 3,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: null,
+        })
+        const link = document.createElement('a')
+        link.download = `webpos-story-${i + 1}.png`
+        link.href = canvas.toDataURL('image/png')
+        link.click()
+        btn.textContent = '⬇ Descargar'
+      })
+      story.appendChild(btn)
+    })
+  </script>
+
+</body>
+</html>

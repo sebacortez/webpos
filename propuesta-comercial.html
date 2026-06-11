@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Comercial — WebPos</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f4f5;
+      padding: 32px 16px;
+      color: #18181b;
+    }
+    .email {
+      max-width: 620px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+      padding: 40px 40px 36px;
+      color: white;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      color: white;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 15px;
+      opacity: 0.75;
+      line-height: 1.6;
+    }
+
+    /* Body */
+    .body { padding: 36px 40px; }
+
+    .greeting { font-size: 15px; color: #3f3f46; margin-bottom: 20px; line-height: 1.7; }
+
+    /* Planes */
+    .planes-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #71717a;
+      margin-bottom: 16px;
+    }
+    .planes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+    .plan {
+      border: 1.5px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 20px 22px;
+      position: relative;
+    }
+    .plan.popular {
+      border-color: #7c3aed;
+      background: #faf5ff;
+    }
+    .badge-popular {
+      position: absolute;
+      top: -11px;
+      left: 20px;
+      background: #7c3aed;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+    .plan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .plan-name { font-size: 15px; font-weight: 700; color: #18181b; }
+    .plan-scope { font-size: 12px; color: #71717a; margin-top: 2px; }
+    .plan-price { text-align: right; }
+    .plan-price .uf { font-size: 20px; font-weight: 800; color: #18181b; }
+    .plan-price .clp { font-size: 11px; color: #71717a; }
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .plan-features li {
+      font-size: 13px;
+      color: #52525b;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .plan-features li::before {
+      content: '✓';
+      color: #7c3aed;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Incluido */
+    .incluido {
+      background: #f4f4f5;
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+    }
+    .incluido p {
+      font-size: 13px;
+      font-weight: 600;
+      color: #3f3f46;
+      margin-bottom: 10px;
+    }
+    .incluido ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .incluido ul li {
+      font-size: 13px;
+      color: #52525b;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .incluido ul li::before {
+      content: '→';
+      color: #a1a1aa;
+      font-size: 11px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .cta a {
+      display: inline-block;
+      background: #18181b;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 10px;
+    }
+    .cta p {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+
+    .divider { border: none; border-top: 1px solid #f4f4f5; margin: 24px 0; }
+
+    .closing {
+      font-size: 14px;
+      color: #3f3f46;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .firma { font-size: 14px; color: #3f3f46; }
+    .firma strong { display: block; font-size: 15px; color: #18181b; margin-bottom: 2px; }
+    .firma a { color: #7c3aed; text-decoration: none; }
+
+    /* Footer */
+    .footer {
+      background: #f4f4f5;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    .footer p { font-size: 11px; color: #a1a1aa; line-height: 1.6; }
+    .footer a { color: #7c3aed; text-decoration: none; }
+
+    .descuento {
+      font-size: 12px;
+      color: #7c3aed;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email">
+
+    <div class="header">
+      <div class="logo">WebPos</div>
+      <h1>Propuesta comercial para [Nombre del negocio]</h1>
+      <p>Gracias por tu interés. Aquí tienes el detalle de nuestros planes y todo lo que incluyen.</p>
+    </div>
+
+    <div class="body">
+
+      <p class="greeting">
+        Hola <strong>[Nombre]</strong>,<br><br>
+        Fue un gusto conversar contigo. Como te comenté, WebPos es un sistema de punto de venta diseñado para comercios como el tuyo — sin funciones de relleno, sin costos ocultos y con implementación incluida desde el primer día.
+      </p>
+
+      <p class="planes-title">Planes disponibles</p>
+
+      <div class="planes">
+
+        <!-- Básico -->
+        <div class="plan">
+          <div class="plan-header">
+            <div>
+              <div class="plan-name">Básico</div>
+              <div class="plan-scope">1 sucursal · hasta 3 usuarios</div>
+            </div>
+            <div class="plan-price">
+              <div class="uf">1,5 UF/mes</div>
+              <div class="clp">≈ $57.000/mes + IVA</div>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li>Punto de venta (POS)</li>
+            <li>Caja diaria con resumen automático</li>
+            <li>Inventario y control de stock</li>
+            <li>Gestión de clientes</li>
+            <li>Reportes básicos con IA incluida</li>
+            <li>Soporte por email</li>
+          </ul>
+        </div>
+
+        <!-- Profesional -->
+        <div class="plan popular">
+          <div class="badge-popular">Más popular</div>
+          <div class="plan-header">
+            <div>
+              <div class="plan-name">Profesional</div>
+              <div class="plan-scope">Hasta 3 sucursales · usuarios ilimitados</div>
+            </div>
+            <div class="plan-price">
+              <div class="uf">3 UF/mes</div>
+              <div class="clp">≈ $114.000/mes + IVA</div>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li>Todo lo del plan Básico</li>
+            <li>Órdenes de servicio</li>
+            <li>Órdenes de compra a proveedores</li>
+            <li>Multi-sucursal y traspasos de stock</li>
+            <li>Reportería avanzada</li>
+            <li>Soporte prioritario</li>
+          </ul>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="plan">
+          <div class="plan-header">
+            <div>
+              <div class="plan-name">Enterprise</div>
+              <div class="plan-scope">Cadenas y franquicias · sucursales ilimitadas</div>
+            </div>
+            <div class="plan-price">
+              <div class="uf">5 UF/mes</div>
+              <div class="clp">≈ $190.000/mes + IVA</div>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li>Todo lo del plan Profesional</li>
+            <li>Integraciones personalizadas</li>
+            <li>Módulos a medida</li>
+            <li>SLA garantizado</li>
+            <li>Soporte dedicado</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="descuento">🎁 10% de descuento pagando un año por adelantado</p>
+
+      <div class="incluido">
+        <p>Todos los planes incluyen sin costo adicional:</p>
+        <ul>
+          <li>Implementación y carga de datos inicial</li>
+          <li>Capacitación para tu equipo</li>
+          <li>Acceso desde cualquier dispositivo</li>
+          <li>Respaldos automáticos en la nube</li>
+          <li>Actualizaciones incluidas</li>
+          <li>IA para interpretar tus reportes de ventas</li>
+        </ul>
+      </div>
+
+      <div class="cta">
+        <a href="https://demo.webpos.cl">Ver demo en vivo →</a>
+        <p>Prueba el sistema sin registrarte — usuario demo disponible</p>
+      </div>
+
+      <hr class="divider">
+
+      <p class="closing">
+        Si tienes alguna pregunta sobre los planes o quieres que ajustemos algo a tu medida, responde este correo o escríbeme por WhatsApp. Podemos agendar una demo en vivo para que veas el sistema funcionando con tu tipo de negocio.
+      </p>
+
+      <div class="firma">
+        <strong>[Tu nombre]</strong>
+        WebPos · <a href="https://webpos.cl">webpos.cl</a><br>
+        <a href="https://wa.me/56978974897">+569 7897 4897</a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>
+        Valores expresados en UF, no incluyen IVA. · UF del día aplica al momento de facturar.<br>
+        <a href="https://webpos.cl">webpos.cl</a> · Santiago, Chile
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
