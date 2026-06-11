@@ -37,7 +37,6 @@
     .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px; background: linear-gradient(135deg, #6366f1, #2563eb); color: var(--white); font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: opacity .15s; box-shadow: 0 2px 8px rgba(99,102,241,.35); }
     .nav-cta:hover { opacity: .9; }
     @media (max-width: 640px) { .nav-links { display: none; } }
-    @media (max-width: 768px) { .ai-spotlight-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } .ai-mockup { display: none; } }
     .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 2rem 80px; background: var(--gray-50); position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,99,235,.07), transparent); pointer-events: none; }
     .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--gray-200); background: var(--white); font-size: 0.8rem; font-weight: 500; color: var(--gray-500); margin-bottom: 2rem; }
@@ -57,16 +56,6 @@
     .section-label { font-size: 0.78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
     .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--black); }
     .section-sub { font-size: 1.05rem; color: var(--gray-500); max-width: 520px; margin-top: .75rem; line-height: 1.7; }
-    .manifesto { background: var(--black); color: var(--white); }
-    .manifesto .container { text-align: center; }
-    .manifesto-quote { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25; max-width: 760px; margin: 0 auto; }
-    .manifesto-quote em { font-style: normal; color: #60a5fa; }
-    .manifesto-sub { font-size: 1.05rem; color: rgba(255,255,255,.55); max-width: 540px; margin: 1.5rem auto 0; line-height: 1.7; }
-    .manifesto-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; margin-top: 4rem; background: rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; }
-    .pillar { background: rgba(255,255,255,.04); padding: 2rem; text-align: left; }
-    .pillar-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .pillar h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .4rem; }
-    .pillar p { font-size: 0.9rem; color: rgba(255,255,255,.5); line-height: 1.6; }
     .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--gray-200); border-radius: 16px; overflow: hidden; margin-top: 3rem; }
     .module-card { background: var(--white); padding: 2rem; transition: background .15s; }
     .module-card:hover { background: var(--gray-50); }
@@ -162,39 +151,6 @@
   </div>
 </section>
 
-<section class="manifesto">
-  <div class="container">
-    <p class="manifesto-quote">
-      "Cada función existe porque resuelve un <em>problema real</em> de comercios como el tuyo."
-    </p>
-    <p class="manifesto-sub">
-      No somos un software genérico que intenta servir a todos. Somos un traje hecho a medida:
-      diseñado para encajar exactamente en la forma de trabajar de tu negocio.
-    </p>
-    <div class="manifesto-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">🎯</div>
-        <h3>Hecho a tu medida</h3>
-        <p>Configuramos el sistema según tu rubro, tu flujo y tu equipo. No al revés.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">⚡</div>
-        <h3>Sin fricción en el día a día</h3>
-        <p>Tu equipo lo aprende en horas. La interfaz es simple porque el trabajo ya es suficientemente complejo.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">📊</div>
-        <h3>Datos que usas de verdad</h3>
-        <p>Reportes diseñados para tomar decisiones, no para impresionar en una demo.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🔒</div>
-        <h3>Tus datos, solo tuyos</h3>
-        <p>Control de acceso por roles estrictos. Ni el equipo técnico que implementa el sistema puede ver la información de tu negocio. Los datos son del dueño del negocio, siempre.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="modulos">
   <div class="container">
@@ -215,7 +171,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
         <h3>Caja diaria</h3>
-        <p>Abre y cierra la caja con monto inicial. Al cerrar, WebPos genera el resumen del día con totales por medio de pago y lo envía por email automáticamente.</p>
+        <p>Abre y cierra la caja con monto inicial. Al cerrar, WebPos genera el resumen del día con totales por medio de pago — incluyendo un análisis con IA.</p>
         <span class="module-tag">Control financiero</span>
       </div>
       <div class="module-card">
@@ -234,22 +190,6 @@
         <p>Registra tus clientes, consulta su historial de compras y órdenes de servicio, y gestiona puntos de fidelización de forma automática.</p>
         <span class="module-tag">Fidelización</span>
       </div>
-      <div class="module-card">
-        <div class="module-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <h3>Órdenes de servicio</h3>
-        <p>Gestiona reparaciones y mantenciones: recibe, controla el avance, notifica al cliente cuando está listo y cobra al retirar.</p>
-        <span class="module-tag">Servicio técnico</span>
-      </div>
-      <div class="module-card">
-        <div class="module-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Ventas e historial</h3>
-        <p>Consulta cualquier venta, anula si es necesario, procesa cambios y devoluciones. Todo con trazabilidad completa por usuario y fecha.</p>
-        <span class="module-tag">Trazabilidad</span>
-      </div>
       <div class="module-card" style="background: linear-gradient(135deg, #faf5ff 0%, #eff6ff 100%); position: relative;">
         <div style="position:absolute; top:1.25rem; right:1.25rem; display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:100px; background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.25);">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2v4h4"/></svg>
@@ -259,125 +199,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3>Reportería + IA</h3>
-        <p>Dashboards de ventas, márgenes y medios de pago. Con un clic, la IA interpreta tus resultados y te entrega recomendaciones concretas para mejorar.</p>
+        <p>Dashboards de ventas, márgenes y medios de pago. Con un clic, la IA interpreta tus resultados y te entrega recomendaciones concretas en lenguaje simple.</p>
         <span class="module-tag">Inteligencia comercial</span>
-      </div>
-      <div class="module-card">
-        <div class="module-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        </div>
-        <h3>Órdenes de compra</h3>
-        <p>Genera órdenes a proveedores, registra la recepción de mercadería y actualiza el stock automáticamente al recibir.</p>
-        <span class="module-tag">Abastecimiento</span>
       </div>
       <div class="module-card">
         <div class="module-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
         </div>
         <h3>Multi-sucursal</h3>
-        <p>Administra varias tiendas desde una sola cuenta. Stock independiente por local, reportes consolidados y usuarios por sucursal.</p>
+        <p>Administra varias tiendas desde una sola cuenta. Stock independiente por local, reportes consolidados, usuarios por sucursal y control de acceso por roles.</p>
         <span class="module-tag">Escalable</span>
       </div>
-      <div class="module-card">
-        <div class="module-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        </div>
-        <h3>Privacidad y control de acceso</h3>
-        <p>Cada usuario accede solo a lo que le corresponde. El equipo técnico que implementa o mantiene la plataforma no tiene acceso a tus ventas, clientes ni datos financieros. Los datos son del dueño del negocio, siempre.</p>
-        <span class="module-tag">Datos protegidos</span>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- AI Feature Spotlight -->
-<section style="background: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 60%, #0f172a 100%); padding: 100px 2rem;">
-  <div class="container">
-    <div class="ai-spotlight-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
-
-      <!-- Texto -->
-      <div>
-        <div style="display:inline-flex; align-items:center; gap:7px; padding:5px 14px; border-radius:100px; background:rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3); margin-bottom:1.5rem;">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2v4h4"/></svg>
-          <span style="font-size:0.78rem; font-weight:600; color:#a78bfa; letter-spacing:0.06em; text-transform:uppercase;">Nuevo · IA integrada</span>
-        </div>
-        <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.03em; line-height:1.15; color:#fff; margin-bottom:1.25rem;">
-          Tus reportes,<br/><span style="color:#a78bfa;">interpretados por IA</span>
-        </h2>
-        <p style="font-size:1.05rem; color:rgba(255,255,255,0.55); line-height:1.75; max-width:440px; margin-bottom:2rem;">
-          Con un clic, WebPos analiza tus ventas, márgenes y productos del período seleccionado y te entrega un resumen ejecutivo con hallazgos clave y recomendaciones concretas para tu negocio.
-        </p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:.85rem;">
-          <li style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:rgba(255,255,255,0.75);">
-            <span style="width:20px; height:20px; border-radius:50%; background:rgba(139,92,246,0.2); border:1px solid rgba(139,92,246,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Analiza ventas totales, ticket promedio y márgenes por categoría
-          </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:rgba(255,255,255,0.75);">
-            <span style="width:20px; height:20px; border-radius:50%; background:rgba(139,92,246,0.2); border:1px solid rgba(139,92,246,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Identifica productos estrella, vendedores destacados y oportunidades de mejora
-          </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; font-size:0.95rem; color:rgba(255,255,255,0.75);">
-            <span style="width:20px; height:20px; border-radius:50%; background:rgba(139,92,246,0.2); border:1px solid rgba(139,92,246,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Recomendaciones concretas en lenguaje simple, sin necesidad de ser experto
-          </li>
-        </ul>
-        <div style="margin-top:2.5rem;">
-          <a href="#contacto" style="display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:10px; background:linear-gradient(135deg,#7c3aed,#2563eb); color:#fff; font-size:0.9rem; font-weight:600; text-decoration:none; box-shadow:0 4px 20px rgba(124,58,237,0.4); transition:opacity .15s;">
-            Incluido en todos los planes
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Panel de mockup -->
-      <div class="ai-mockup" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:1.75rem; backdrop-filter:blur(10px);">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
-          <span style="font-size:0.75rem; font-weight:600; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.08em;">Análisis con IA · Junio 2026</span>
-          <span style="font-size:0.7rem; color:#a78bfa;">✕</span>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:.9rem;">
-          <div style="height:10px; background:rgba(255,255,255,0.12); border-radius:6px; width:100%;"></div>
-          <div style="height:10px; background:rgba(255,255,255,0.08); border-radius:6px; width:88%;"></div>
-          <div style="height:10px; background:rgba(255,255,255,0.08); border-radius:6px; width:94%;"></div>
-          <div style="height:10px; background:rgba(255,255,255,0.05); border-radius:6px; width:75%;"></div>
-          <div style="margin:0.5rem 0; height:1px; background:rgba(255,255,255,0.06);"></div>
-          <div style="display:flex; gap:.75rem; align-items:flex-start;">
-            <div style="width:28px; height:28px; border-radius:8px; background:rgba(139,92,246,0.25); flex-shrink:0; display:flex; align-items:center; justify-content:center;">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2v4h4"/></svg>
-            </div>
-            <div style="flex:1;">
-              <div style="height:9px; background:rgba(167,139,250,0.3); border-radius:5px; width:70%; margin-bottom:.5rem;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.07); border-radius:5px; width:100%; margin-bottom:.4rem;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.07); border-radius:5px; width:90%; margin-bottom:.4rem;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.05); border-radius:5px; width:80%;"></div>
-            </div>
-          </div>
-          <div style="margin-top:.5rem; display:flex; flex-direction:column; gap:.6rem;">
-            <div style="display:flex; align-items:center; gap:.6rem;">
-              <div style="width:6px; height:6px; border-radius:50%; background:#a78bfa; flex-shrink:0;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.08); border-radius:5px; flex:1;"></div>
-            </div>
-            <div style="display:flex; align-items:center; gap:.6rem;">
-              <div style="width:6px; height:6px; border-radius:50%; background:#60a5fa; flex-shrink:0;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.08); border-radius:5px; flex:1; max-width:75%;"></div>
-            </div>
-            <div style="display:flex; align-items:center; gap:.6rem;">
-              <div style="width:6px; height:6px; border-radius:50%; background:#34d399; flex-shrink:0;"></div>
-              <div style="height:8px; background:rgba(255,255,255,0.08); border-radius:5px; flex:1; max-width:85%;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <section id="preview" style="background:var(--gray-50); padding:100px 2rem;">
   <div class="container">
